@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community - NomadCompass</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Variables */
+        :root {
+            --primary-color: #4F46E5;
+            --primary-dark: #4338CA;
+            --text-color: #1F2937;
+            --text-light: #6B7280;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .logo i {
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+        }
+
+        .nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover, .nav a.active {
+            color: var(--primary-color);
+        }
+
+        /* Community Hero Section */
+        .community-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                        url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding-top: 70px;
+        }
+
+        .community-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Community Features */
+        .community-features {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .feature-card h3 {
+            padding: 1.5rem 1.5rem 0.5rem;
+        }
+
+        .feature-card p {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-light);
+        }
+
+        /* Discussion Section */
+        .discussions {
+            padding: 5rem 0;
+        }
+
+        .discussion-card {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .discussion-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .discussion-stats {
+            display: flex;
+            gap: 1rem;
+            color: var(--text-light);
+            margin-top: 1rem;
+        }
+
+        .discussion-stats i {
+            color: var(--primary-color);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            margin-top: 1rem;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #1F2937;
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-links h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: #9CA3AF;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            color: #9CA3AF;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav ul {
+                display: none;
+            }
+
+            .community-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-compass"></i>
+                <span>NomadCompass</span>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="discovery.html">Discover</a></li>
+                    <li><a href="plan.html">Plan Trips</a></li>
+                    <li><a href="community.html" class="active">Community</a></li>
+                    <li><a href="tourist.html">Guides</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="community-hero">
+            <div class="container">
+                <h1>Connect with Fellow Travelers</h1>
+                <p>Join a vibrant community of explorers, share experiences, and make lifelong connections</p>
+            </div>
+        </section>
+
+        <section class="community-features">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <img src="https://images.unsplash.com/photo-1515169067868-5387ec356754" alt="Discussion Forums">
+                        <h3>Discussion Forums</h3>
+                        <p>Engage in meaningful conversations about travel experiences, tips, and destinations.</p>
+                        <a href="#" class="btn btn-primary">Join Discussions</a>
+                    </div>
+                    <div class="feature-card">
+                        <img src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3" alt="Travel Groups">
+                        <h3>Travel Groups</h3>
+                        <p>Find or create groups based on destinations, interests, or travel styles.</p>
+                        <a href="#" class="btn btn-primary">Explore Groups</a>
+                    </div>
+                    <div class="feature-card">
+                        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18" alt="Events">
+                        <h3>Meetups & Events</h3>
+                        <p>Attend local and virtual events to connect with travelers in your area.</p>
+                        <a href="#" class="btn btn-primary">Find Events</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="discussions">
+            <div class="container">
+                <h2 style="margin-bottom: 2rem;">Trending Discussions</h2>
+                <div class="discussion-card">
+                    <div class="discussion-header">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330" alt="User Avatar" class="avatar">
+                        <div>
+                            <h4>Best Hidden Gems in Southeast Asia</h4>
+                            <span style="color: var(--text-light)">Started by Sarah M. • 2 days ago</span>
+                        </div>
+                    </div>
+                    <p>Looking for off-the-beaten-path destinations in Southeast Asia. Share your secret spots!</p>
+                    <div class="discussion-stats">
+                        <span><i class="fas fa-comment"></i> 45 replies</span>
+                        <span><i class="fas fa-heart"></i> 128 likes</span>
+                    </div>
+                </div>
+
+                <div class="discussion-card">
+                    <div class="discussion-header">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" alt="User Avatar" class="avatar">
+                        <div>
+                            <h4>Solo Travel Safety Tips</h4>
+                            <span style="color: var(--text-light)">Started by John D. • 1 day ago</span>
+                        </div>
+                    </div>
+                    <p>Experienced solo travelers, what are your top safety tips for first-timers?</p>
+                    <div class="discussion-stats">
+                        <span><i class="fas fa-comment"></i> 67 replies</span>
+                        <span><i class="fas fa-heart"></i> 195 likes</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <i class="fas fa-compass"></i>
+                        <span>NomadCompass</span>
+                    </div>
+                    <p>Connecting travelers worldwide.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Destinations</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="#">Travel Forums</a></li>
+                        <li><a href="#">Meet Travelers</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 NomadCompass. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

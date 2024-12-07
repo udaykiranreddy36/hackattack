@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NomadCompass - Discover Amazing Destinations</title>
+    <link rel="stylesheet" href="main1.css">
+    <link rel="stylesheet" href="header1.css">
+    <link rel="stylesheet" href="search1.css">
+    <link rel="stylesheet" href="cards1.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i data-lucide="compass" class="logo-icon"></i>
+                <span>NomadCompass</span>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="discovery.html" class="active">Discover</a></li>
+                    <li><a href="plan.html">Plan Trips</a></li>
+                    <li><a href="community.html">Community</a></li>
+                    <li><a href="tourist.html">Guides</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="hero">
+            <h1>Discover Amazing Destinations</h1>
+            <p>Explore the world's most beautiful places and plan your next adventure</p>
+        </div>
+        
+        <div class="search-filters">
+            <div class="search-wrapper">
+                <i data-lucide="search" class="search-icon"></i>
+                <input type="text" placeholder="Search destinations...">
+            </div>
+            
+            <div class="filters">
+                <select>
+                    <option value="">Price Range</option>
+                    <option value="0-1000">$0 - $1,000</option>
+                    <option value="1000-2000">$1,000 - $2,000</option>
+                    <option value="2000+">$2,000+</option>
+                </select>
+                
+                <button class="filter-btn">
+                    <i data-lucide="sliders-horizontal"></i>
+                    <span>Filters</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="destinations-grid">
+            <div class="destination-card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34" alt="Paris">
+                    <div class="price-tag">$1,200+</div>
+                </div>
+                <div class="card-content">
+                    <h3>Paris, France</h3>
+                    <div class="location">
+                        <i data-lucide="map-pin"></i>
+                        <span>Île-de-France</span>
+                    </div>
+                    <div class="card-footer">
+                        <div class="rating">
+                            <i data-lucide="star" class="star-icon"></i>
+                            <span>4.8</span>
+                        </div>
+                        <div class="popularity">
+                            <i data-lucide="users"></i>
+                            <span>250k visitors</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- More destination cards with similar structure -->
+            <div class="destination-card">
+                <div class="card-image">
+                    <img src="images/tokyo.jpeg" alt="Tokyo">
+                    <div class="price-tag">$1,500+</div>
+                </div>
+                <div class="card-content">
+                    <h3>Tokyo, Japan</h3>
+                    <div class="location">
+                        <i data-lucide="map-pin"></i>
+                        <span>Kanto</span>
+                    </div>
+                    <div class="card-footer">
+                        <div class="rating">
+                            <i data-lucide="star" class="star-icon"></i>
+                            <span>4.7</span>
+                        </div>
+                        <div class="popularity">
+                            <i data-lucide="users"></i>
+                            <span>300k visitors</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="destination-card">
+                <div class="card-image">
+                    <img src="images/newyork.jpg" alt="New York">
+                    <div class="price-tag">$1,000+</div>
+                </div>
+                <div class="card-content">
+                    <h3>New York, USA</h3>
+                    <div class="location">
+                        <i data-lucide="map-pin"></i>
+                        <span>New York City</span>
+                    </div>
+                    <div class="card-footer">
+                        <div class="rating">
+                            <i data-lucide="star" class="star-icon"></i>
+                            <span>4.9</span>
+                        </div>
+                        <div class="popularity">
+                            <i data-lucide="users"></i>
+                            <span>500k visitors</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="destination-card">
+                <div class="card-image">
+                    <img src="images/sydney.jpg" alt="Sydney">
+                    <div class="price-tag">$1,300+</div>
+                </div>
+                <div class="card-content">
+                    <h3>Sydney, Australia</h3>
+                    <div class="location">
+                        <i data-lucide="map-pin"></i>
+                        <span>New South Wales</span>
+                    </div>
+                    <div class="card-footer">
+                        <div class="rating">
+                            <i data-lucide="star" class="star-icon"></i>
+                            <span>4.6</span>
+                        </div>
+                        <div class="popularity">
+                            <i data-lucide="users"></i>
+                            <span>200k visitors</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="destination-card">
+                <div class="card-image">
+                    <img src="images/rome.jpg" alt="Rome">
+                    <div class="price-tag">$900+</div>
+                </div>
+                <div class="card-content">
+                    <h3>Rome, Italy</h3>
+                    <div class="location">
+                        <i data-lucide="map-pin"></i>
+                        <span>Lazio</span>
+                    </div>
+                    <div class="card-footer">
+                        <div class="rating">
+                            <i data-lucide="star" class="star-icon"></i>
+                            <span>4.8</span>
+                        </div>
+                        <div class="popularity">
+                            <i data-lucide="users"></i>
+                            <span>180k visitors</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="destination-card">
+                <div class="card-image">
+                    <img src="images/capetown.jpeg" alt="Cape Town">
+                    <div class="price-tag">$1,000+</div>
+                </div>
+                <div class="card-content">
+                    <h3>Cape Town, South Africa</h3>
+                    <div class="location">
+                        <i data-lucide="map-pin"></i>
+                        <span>Western Cape</span>
+                    </div>
+                    <div class="card-footer">
+                        <div class="rating">
+                            <i data-lucide="star" class="star-icon"></i>
+                            <span>4.7</span>
+                        </div>
+                        <div class="popularity">
+                            <i data-lucide="users"></i>
+                            <span>150k visitors</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

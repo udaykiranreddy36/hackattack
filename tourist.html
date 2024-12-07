@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Guides - NomadCompass</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Variables */
+        :root {
+            --primary-color: #4F46E5;
+            --primary-dark: #4338CA;
+            --text-color: #1F2937;
+            --text-light: #6B7280;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .logo i {
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+        }
+
+        .nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover, .nav a.active {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .guide-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                        url('https://images.unsplash.com/photo-1528702748617-c64d49f918af');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding-top: 70px;
+        }
+
+        .guide-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Guide Cards Section */
+        .guides-section {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .guide-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .guide-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .guide-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .guide-info {
+            padding: 1.5rem;
+        }
+
+        .guide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .guide-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .guide-location {
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        .guide-location i {
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .guide-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .rating-score {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .rating-count {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .guide-specialties {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .specialty-tag {
+            background-color: #EEF2FF;
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .guide-details {
+            margin: 1rem 0;
+            color: var(--text-light);
+        }
+
+        .guide-meta {
+            display: flex;
+            gap: 1rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .guide-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--text-light);
+            color: var(--text-light);
+            padding: 0.75rem;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #1F2937;
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-links h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: #9CA3AF;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            color: #9CA3AF;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav ul {
+                display: none;
+            }
+
+            .guide-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .guides-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-compass"></i>
+                <span>NomadCompass</span>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="discovery.html">Discover</a></li>
+                    <li><a href="plan.html">Plan Trips</a></li>
+                    <li><a href="community.html">Community</a></li>
+                    <li><a href="guides.html" class="active">Guides</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="guide-hero">
+            <div class="container">
+                <h1>Expert Local Guides</h1>
+                <p>Discover authentic experiences with our certified local guides</p>
+            </div>
+        </section>
+
+        <section class="guides-section">
+            <div class="container">
+                <div class="guides-grid">
+                    <!-- Guide Card 1 -->
+                    <div class="guide-card">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956" alt="Maria Rodriguez" class="guide-image">
+                        <div class="guide-info">
+                            <div class="guide-header">
+                                <div>
+                                    <h3 class="guide-name">Maria Rodriguez</h3>
+                                    <div class="guide-location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>Barcelona, Spain</span>
+                                    </div>
+                                </div>
+                                <div class="guide-rating">
+                                    <span class="rating-score">4.9</span>
+                                    <span class="rating-count">(127 reviews)</span>
+                                </div>
+                            </div>
+                            <div class="guide-specialties">
+                                <span class="specialty-tag">Cultural Tours</span>
+                                <span class="specialty-tag">Food & Wine</span>
+                                <span class="specialty-tag">Architecture</span>
+                            </div>
+                            <p class="guide-details">Certified local guide with 8+ years of experience showcasing Barcelona's rich cultural heritage.</p>
+                            <div class="guide-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-language"></i>
+                                    <span>English, Spanish, Catalan</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>Available Mar-Oct</span>
+                                </div>
+                            </div>
+                            <div class="guide-actions">
+                                <button class="btn btn-primary">Book Now</button>
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-envelope"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Guide Card 2 -->
+                    <div class="guide-card">
+                        <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce" alt="James Chen" class="guide-image">
+                        <div class="guide-info">
+                            <div class="guide-header">
+                                <div>
+                                    <h3 class="guide-name">James Chen</h3>
+                                    <div class="guide-location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>Kyoto, Japan</span>
+                                    </div>
+                                </div>
+                                <div class="guide-rating">
+                                    <span class="rating-score">4.8</span>
+                                    <span class="rating-count">(98 reviews)</span>
+                                </div>
+                            </div>
+                            <div class="guide-specialties">
+                                <span class="specialty-tag">Traditional Culture</span>
+                                <span class="specialty-tag">Temple Tours</span>
+                                <span class="specialty-tag">Tea Ceremonies</span>
+                            </div>
+                            <p class="guide-details">Expert in Japanese cultural experiences and historical sites. Specialized in traditional ceremonies.</p>
+                            <div class="guide-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-language"></i>
+                                    <span>English, Japanese, Mandarin</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>Year-round</span>
+                                </div>
+                            </div>
+                            <div class="guide-actions">
+                                <button class="btn btn-primary">Book Now</button>
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-envelope"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Guide Card 3 -->
+                    <div class="guide-card">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb" alt="Sophie Laurent" class="guide-image">
+                        <div class="guide-info">
+                            <div class="guide-header">
+                                <div>
+                                    <h3 class="guide-name">Sophie Laurent</h3>
+                                    <div class="guide-location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>Paris, France</span>
+                                    </div>
+                                </div>
+                                <div class="guide-rating">
+                                    <span class="rating-score">4.9</span>
+                                    <span class="rating-count">(156 reviews)</span>
+                                </div>
+                            </div>
+                            <div class="guide-specialties">
+                                <span class="specialty-tag">Art History</span>
+                                <span class="specialty-tag">Museum Tours</span>
+                                <span class="specialty-tag">Hidden Gems</span>
+                            </div>
+                            <p class="guide-details">Art historian and certified Paris guide offering immersive cultural and historical experiences.</p>
+                            <div class="guide-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-language"></i>
+                                    <span>English, French, German</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>Year-round</span>
+                                </div>
+                            </div>
+                            <div class="guide-actions">
+                                <button class="btn btn-primary">Book Now</button>
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-envelope"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <i class="fas fa-compass"></i>
+                        <span>NomadCompass</span>
+                    </div>
+                    <p>Connecting travelers worldwide.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">About Us</a></li>
+                        <li><a href="#">Destinations</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="#">Travel Forums</a></li>
+                        <li><a href="#">Meet Travelers</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 NomadCompass. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+</body>
+</html>
